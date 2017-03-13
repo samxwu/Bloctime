@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="Bloctime">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Bloctime</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <!-- nav bar -->     
+    <nav ng-controller="HomeCtrl as home"> 
+            <section>
+                <p>{{home.pageTitle}}</p>
+            </section>
+    </nav>
+
+<ui-view></ui-view>
+
+    
+    <!-- Angular cookies -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script> -->
+    
+    <!-- Angular bootstrap -->
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script> 
+    
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    
+    <!-- Angular ui-router -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDooaoC47Ef2sjEADdBUR8oRVHEvq_7ubs",
+        authDomain: "bloctime-498aa.firebaseapp.com",
+        databaseURL: "https://bloctime-498aa.firebaseio.com",
+        storageBucket: "bloctime-498aa.appspot.com",
+        messagingSenderId: "185277810697"
+    };
+    firebase.initializeApp(config);
+    </script>
+    
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controllers/HomeCtrl.js"></script>
+    
+</body>
+</html>
