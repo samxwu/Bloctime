@@ -1,1 +1,6 @@
-<h1>{{pageTitle}}</h1>
+<div class="centered" ng-controller="HomeCtrl">
+        <h2>{{totalTime | timecode}}</h2> 
+        <button type="button" class="btn btn-primary" ng-click="timeState(workState)">
+            {{workState}}
+        </button>
+</div>

@@ -9,7 +9,7 @@
          $stateProvider
             .state('home', {
                 url: '/',
-                controller: 'HomeCtrl as home',
+                controller: 'HomeCtrl',
                 templateUrl: '/templates/home.html'
             });
           
@@ -17,7 +17,7 @@
 
     
 angular
-    .module('Bloctime', ['firebase', 'ui.router'])
+    .module('Bloctime', ['firebase', 'ui.router', 'ui.bootstrap'])
     .config(config);
     
 })();
