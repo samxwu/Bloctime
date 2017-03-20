@@ -1,6 +1,15 @@
 <div class="centered" ng-controller="HomeCtrl">
-        <h2>{{totalTime | timecode}}</h2> 
-        <button type="button" class="btn btn-primary" ng-click="timeState(workState)">
-            {{workState}}
+    <div ng-hide = "onBreak">
+        <h2>{{CurrentTotalTime | timecode}}</h2> 
+        <button type="button" class="btn btn-primary" ng-click="timeState(start_reset)">
+            {{start_reset}} Work
         </button>
+    </div>
+    
+    <div ng-show = "onBreak">
+        <h2>{{CurrentTotalTime | timecode}}</h2> 
+        <button type="button" class="btn btn-primary" ng-click="timeState(start_reset)">
+            {{start_reset}} Break
+        </button>
+    </div>
 </div>

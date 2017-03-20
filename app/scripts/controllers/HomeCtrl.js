@@ -1,39 +1,73 @@
 (function() {
-    function HomeCtrl($interval, $scope) {
-        $scope.workState = "Start";
-        $scope.totalTime = 1500; //time in seconds - 25 minutes
+    function HomeCtrl($interval, $scope, WORKSESSION) {
         
-        $scope.timeState = function(workState){
-            if (workState == "Start") {
+        $scope.start_reset = "Start";
+        $scope.onBreak = false;
+        $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
+        
+        
+        $scope.timeState = function(start_reset){
+            if (start_reset == "Start" && $scope.onBreak == false) {
+                $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
                 $scope.startTime();
-            } else if (workState == "Reset") {
-                $scope.resetTime();
-            } 
+            } else if (start_reset == "Reset" && $scope.onBreak == false) {
+                $scope.resetStartTime(WORKSESSION.WORKTIME);
+                $scope.startTime();
+            } else if (start_reset == "Start" && $scope.onBreak == true) {
+                $scope.CurrentTotalTime = WORKSESSION.BREAKTIME;
+                $scope.startTime();
+            } else if (start_reset == "Reset" && $scope.onBreak == true) {
+                $scope.resetStartTime(WORKSESSION.BREAKTIME);
+                $scope.startTime();
+            }
         };
         
-        //var stop;
+
+        var stop;
         $scope.startTime = function() {
-          //if ( angular.isDefined(stop) ) return;
-                $scope.workState = "Reset";
-                stop = $interval(function() {
-                    if ($scope.totalTime > 0) {
-                        $scope.totalTime = $scope.totalTime - 1;
-                        console.log($scope.totalTime);
-                    } else {
-                        console.log("Done");
-                        //this.stopTime();
-                    }
-                }, 1000, 1500);
-            };
-        
-        $scope.resetTime = function() {
-            $scope.workState = "Start";
-            $scope.totalTime = 1500;
+          if ( angular.isDefined(stop) ) return;
+          
+          $scope.start_reset = "Reset";
+          stop = $interval(function() {
+            if ($scope.CurrentTotalTime > 0) {
+              $scope.CurrentTotalTime = $scope.CurrentTotalTime - 1;
+            } else {
+              $scope.onBreak = !$scope.onBreak;
+              $scope.start_reset = "Start";    
+                if ($scope.onBreak == true) { 
+                    $scope.CurrentTotalTime = WORKSESSION.BREAKTIME; 
+                } else { 
+                    $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
+                };
+              $scope.stopStartTime();
+            }
+          }, 1000);
         };
+
+        $scope.stopStartTime = function() {
+          if (angular.isDefined(stop)) {
+            $interval.cancel(stop);
+            stop = undefined;
+          }
+        };
+
+        $scope.resetStartTime = function(totalTime) {
+            $scope.start_reset = "Reset";
+            $scope.CurrentTotalTime = totalTime;
+        };
+
+        /*
+        $scope.$on('$destroy', function() {
+          // Make sure that the interval is destroyed too
+          $scope.stopTotalTime();
+        });
+        */
+        
         
      };
+
            
-    angular
-        .module('Bloctime')
-        .controller('HomeCtrl', ['$interval', '$scope', HomeCtrl]);    
+angular
+    .module('Bloctime')
+    .controller('HomeCtrl', ['$interval', '$scope', 'WORKSESSION', HomeCtrl]);    
 })();
