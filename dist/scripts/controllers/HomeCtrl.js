@@ -3,21 +3,19 @@
         
         $scope.start_reset = "Start";
         $scope.onBreak = false;
+
         $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
+        $scope.ResetTotalTime = WORKSESSION.WORKTIME;
+
+        $scope.completed_work_sessions = 0;
+        
         
         
         $scope.timeState = function(start_reset){
-            if (start_reset == "Start" && $scope.onBreak == false) {
-                $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
+            if (start_reset == "Start") {
                 $scope.startTime();
-            } else if (start_reset == "Reset" && $scope.onBreak == false) {
-                $scope.resetStartTime(WORKSESSION.WORKTIME);
-                $scope.startTime();
-            } else if (start_reset == "Start" && $scope.onBreak == true) {
-                $scope.CurrentTotalTime = WORKSESSION.BREAKTIME;
-                $scope.startTime();
-            } else if (start_reset == "Reset" && $scope.onBreak == true) {
-                $scope.resetStartTime(WORKSESSION.BREAKTIME);
+            } else if (start_reset == "Reset") {
+                $scope.resetStartTime($scope.ResetTotalTime);
                 $scope.startTime();
             }
         };
@@ -33,11 +31,23 @@
               $scope.CurrentTotalTime = $scope.CurrentTotalTime - 1;
             } else {
               $scope.onBreak = !$scope.onBreak;
-              $scope.start_reset = "Start";    
+              $scope.start_reset = "Start";
+                // Completed work session, start break session 
                 if ($scope.onBreak == true) { 
-                    $scope.CurrentTotalTime = WORKSESSION.BREAKTIME; 
+                    $scope.completed_work_sessions += 1;
+                    
+                    if ($scope.completed_work_sessions%4 > 0) {
+                        $scope.CurrentTotalTime = WORKSESSION.BREAKTIME_SHORT;
+                        $scope.ResetTotalTime = WORKSESSION.BREAKTIME_SHORT;
+                    } else {
+                        $scope.CurrentTotalTime = WORKSESSION.BREAKTIME_LONG;
+                        $scope.ResetTotalTime = WORKSESSION.BREAKTIME_LONG;
+                    }
+                    
+                // Completed break session, start work session
                 } else { 
                     $scope.CurrentTotalTime = WORKSESSION.WORKTIME;
+                    $scope.ResetTotalTime = WORKSESSION.WORKTIME;
                 };
               $scope.stopStartTime();
             }
