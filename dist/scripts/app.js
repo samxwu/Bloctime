@@ -20,9 +20,8 @@ angular
     .module('Bloctime', ['firebase', 'ui.router', 'ui.bootstrap'])
     .constant('WORKSESSION', {
         'WORKTIME': 10,
-        //'BREAKTIME': 5    
         'BREAKTIME_SHORT': 5,
-        'BREAKTIME_LONG': 8
+        'BREAKTIME_LONG': 10
     })
     .config(config);
     

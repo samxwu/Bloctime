@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="/styles/home.css">
 </head>
 <body>
-    <!-- nav bar -->     
-    <!-- <nav ng-controller="HomeCtrl as home"> </nav> -->
-    <!-- <ng-include src="'/templates/home.html'"></ng-include> -->
-    
-    
+        
 <ui-view>
 </ui-view>
 
@@ -31,6 +27,11 @@
     
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script> 
     
+    <!-- Buzz -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js"></script>
+    
+    
+    
     <script>
         
     // Initialize Firebase
@@ -45,6 +46,8 @@
     </script>
     
     <script src="/scripts/app.js"></script>
+    <script src="/scripts/services/Sessions.js"></script>
+    <script src="/scripts/services/Alarm.js"></script>
     <script src="/scripts/controllers/HomeCtrl.js"></script>
     <script src="/scripts/filters/timecode.js"></script>
     
