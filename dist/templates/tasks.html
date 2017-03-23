@@ -2,19 +2,23 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
                 <h1>task history</h1>
-                <div ng-repeat="task in tasks.all">
-                    <p >{{ task.$value }}</p>
-                </div>
-            
-            <form>
-                <br>
-                <input type="text" size="40" ng-model = "tasks.newTask"> 
-                <br> 
+                <form>
+                    <input type="text" size="40" ng-model = "tasks.newTask"> 
+                    <br> 
                 <!--<span style="font-size: 1.1rem"> {{ newTask }} </span>-->
-                <br>
-            </form>
-            <button class="btn btn-primary" type="button" ng-click="tasks.addTask(tasks.newTask, tasks.newTask)">Add Task</button>
+                </form>
             
+                <button class="btn btn-primary" type="button" ng-click="tasks.addTask(tasks.newTask)">
+                    Add Task
+                </button>
+            
+                <br>
+                <br>
+                <br>
+            
+                <div ng-repeat="task in tasks.all | orderBy: '-$id'">
+                    <p> {{ task.$value }} </p>
+                </div>
                 
         </div>
 

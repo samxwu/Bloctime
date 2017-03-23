@@ -72,12 +72,7 @@
         };
 
         
-        
-        
-         
-         
-         
-         return Sessions;
+        return Sessions;
      }
  
      angular

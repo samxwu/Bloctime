@@ -5,13 +5,13 @@
       
       var ref = firebase.database().ref("tasks");
       var tasks = $firebaseArray(ref);
-      
             
       Tasks.all = tasks;
       Tasks.newTask = null;
       
-      Tasks.addTask = function(childName, value){
-          ref.child(childName).set(value);
+      Tasks.addTask = function(value){
+          var timeInMs = Date.now();
+          ref.child(timeInMs).set(value);
           Tasks.newTask = null;
       };
       

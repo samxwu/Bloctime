@@ -52,13 +52,9 @@ a {
     display: block;
     transition: 0.3s;
     font-family: 'Shadows Into Light Two', cursive;
+    border-bottom: dotted;
 }
 
-/*
-p:nth-child(even) {
-    background-color: #f2f2f2;
-}
-*/
 
 .sidenav .closebtn {
     position: absolute;
