@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <title>Bloctime</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/tasks.css">
 </head>
 <body>
+    
+    <!-- nav bar -->
+    <nav ng-controller="TasksCtrl">
+        <ng-include src="'/templates/tasks.html'"></ng-include>
+    </nav>
+    
         
 <ui-view>
 </ui-view>
@@ -48,8 +57,11 @@
     <script src="/scripts/app.js"></script>
     <script src="/scripts/services/Sessions.js"></script>
     <script src="/scripts/services/Alarm.js"></script>
-    <script src="/scripts/controllers/HomeCtrl.js"></script>
+    <script src="/scripts/services/Tasks.js"></script>
     <script src="/scripts/filters/timecode.js"></script>
+    <script src="/scripts/controllers/HomeCtrl.js"></script>
+    <script src="/scripts/controllers/TasksCtrl.js"></script>
+    
     
     
 </body>

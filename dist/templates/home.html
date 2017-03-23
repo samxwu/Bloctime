@@ -1,13 +1,13 @@
-<div class="centered" ng-controller="HomeCtrl">
+<div class="centered" id="session-section" ng-controller="HomeCtrl">
     <div ng-hide = "sessions.onBreak">
-        <h2>{{sessions.CurrentTotalTime | timecode}}</h2> 
+        <h2 class="timer">{{sessions.CurrentTotalTime | timecode}}</h2> 
         <button type="button" class="btn btn-primary" ng-click="sessions.timeState(sessions.start_reset)">
             {{sessions.start_reset}} Work
         </button>
     </div>
     
     <div ng-show = "sessions.onBreak">
-        <h2>{{sessions.CurrentTotalTime | timecode}}</h2> 
+        <h2 class="timer">{{sessions.CurrentTotalTime | timecode}}</h2> 
         <button type="button" class="btn btn-primary" ng-click="sessions.timeState(sessions.start_reset)">
             {{sessions.start_reset}} Break
         </button>
